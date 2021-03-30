@@ -42,29 +42,8 @@ class TicketDao {
   } 
   }
 
-  // async filterAgent(req, res, agent_id, location_id, priority_id, status_id) {
-  //   try {
-  //     let tickets = await pool.query(`SELECT * FROM tickets WHERE agent_id=? AND location_id=? AND priority_id=? AND status_id=?`, [agent_id],  [location_id],  [priority_id], [status_id],);
-  //     console.log(tickets);
-  //     let files = await pool.query('Select * from files');
-  //     let comments = await pool.query(`Select tn.id, tn.note_text, tn.client_id, tn.ticket_id, c.fname, c.lname, tn.created_at
-  //     from ticket_notes tn
-  //     join clients c ON tn.client_id = c.id `);
-  //     let merged = tickets.map((ticket, idx) => {
-  //       ticket.files = files.filter(file => file.ticket_id === ticket.id);
-  //       ticket.notes = comments.filter(comment => comment.ticket_id === ticket.id)
-  //       return ticket
-  //     })
-  //     res.json(merged);
-  // } catch (err) {
-  //   throw new Error(err)
-  // } 
-  // }
-
-
-
   create(req, res) {
-    // let sql = "SELECT * FROM movies where id= ?";
+    // let sql = "Makes routing more dynamic with a question mark";
     let fields = Object.keys(req.body);
     // fields[ fields.indexOf('condition')] = 'condition'; //if i were using my cars database
     let values = Object.values(req.body);
@@ -75,7 +54,7 @@ class TicketDao {
       !req.body.client_phone_number ||
       !req.body.department_id ||
       !req.body.description ||
-      !req.body.id || //actually ticket id was missing!
+      !req.body.id || 
       !req.body.location_id ||
       !req.body.priority_id ||
       !req.body.service_details_id ||

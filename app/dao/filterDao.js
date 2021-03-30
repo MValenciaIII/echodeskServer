@@ -23,7 +23,7 @@ async filterTickets(req, res) {
 
     let query = req.query;  
 
-      let tickets = await pool.query(`SELECT * from tickets WHERE ${fields.join('=? AND ')}=? ORDER BY created_at DESC`, [...values]);
+      let tickets = await pool.query(`SELECT * from tickets WHERE ${fields.join('=? AND ')}=? ORDER BY created_at ASC`, [...values]);
 
       console.log(tickets);
 

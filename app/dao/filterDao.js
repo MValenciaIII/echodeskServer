@@ -23,17 +23,13 @@ async filterTickets(req, res) {
 
     let query = req.query;  
 
-      let tickets = await pool.query(`SELECT * from tickets WHERE ${fields.join('=? AND')}=?`, [...values]);
+      let tickets = await pool.query(`SELECT * from tickets WHERE ${fields.join('=? AND ')}=? ORDER BY created_at DESC`, [...values]);
 
       console.log(tickets);
 
       let files = await pool.query('Select * from files');
 
-      let comments = await pool.query(`Select tn.id, tn.note_text, tn.client_id, tn.ticket_id, c.fname, c.lname, tn.created_at
-
-      from ticket_notes tn
-
-      join clients c ON tn.client_id = c.id `);
+      let comments = await pool.query('Select tn.id, tn.note_text, tn.client_id, tn.ticket_id, c.fname, c.lname, tn.created_at from ticket_notes tn join clients c ON tn.client_id = c.id');
 
       let merged = tickets.map((ticket, idx) => {
 

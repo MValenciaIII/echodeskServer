@@ -70,7 +70,6 @@ class TicketDao {
     let values = Object.values(req.body);
     //Required Min Data
     if (
-      !req.body.agent_id ||
       !req.body.client_full_name ||
       !req.body.client_id ||
       !req.body.client_phone_number ||
@@ -84,7 +83,7 @@ class TicketDao {
       !req.body.status_id ||
       !req.body.subject
     ) {
-      res.json({
+     return res.json({
         error: true,
         message: 'ERROR! There is missing data in this form!',
       });

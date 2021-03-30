@@ -17,6 +17,12 @@ app.use(bodyparser.urlencoded({
 
 app.use(cors());
 
+//app.use(function(req,res, next){
+ // res.header("Access-Control-Allow-Origin", "*");
+ // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+ // next();
+//});
+
 // Database connection
 //const db = mysql.createConnection({
   //  host: "34.226.17.246",
@@ -105,122 +111,3 @@ res.json({
 
 
 app.use('/api', router); //this entire system only exist after /api. pre-fixed with
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const express = require('express'); // gives us access to express
-// const app = express(); //accentuate express into the server folder.
-
-// const cors = require('cors'); //gives us access to cors. Cors handles the http for us.
-// // const bodyParser = require('body-parser'); // allows us to parse
-// const router = require('./app/routes/router');
-
-// // as an api gets bigger (Scales), do you have a file system that can scale instead of a 1000 lines in one index.js. Router is a way to make the api more flexiable without people 1000 lines of code in one file.
-
-// const PORT = 4000; //? Any connection to the react port of 3000 for local hos
-// app.listen(PORT, () => {
-//   console.log(`Server on PORT: ${PORT}`);
-// });
-
-// app.use(cors());
-// // app.use(bodyParser.urlencoded({ extended: false }));
-// // app.use(bodyParser.json()); //parse json package that is sent back to our api.
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
-
-// //ALL ROUTES
-// app.get('/', (req, res) => {
-//   res.json({
-//     'All tickets': 'http://localhost:4000/api/tickets',
-//     'Find by priority': 'http://localhost:4000/api/priority',
-//     'Find by status': 'http://localhost:4000/api/status',
-//     'Find by departments': 'http://localhost:4000/api/departments',
-//     'Find by details': 'http://localhost:4000/api/details',
-//     'Find by service': 'http://localhost:4000/api/service',
-//     'Find by location': 'http://localhost:4000/api/location',
-//   });
-// });
-
-// app.post('/update', (req, res) => {
-//   console.log(req.body);
-//   res.json(req.body);
-// });
-
-// app.post('/create', (req, res) => {
-//   console.log(req.body);
-
-//   res.json(req.body);
-// });
-
-// app.post('/delete/:id', (req, res) => {
-//   console.log(req.body);
-
-//   res.json(req.body);
-// });
-
-// app.use('/api', router); //this entire system only exist after /api. pre-fixed with

@@ -53,14 +53,14 @@ class TicketDao {
       !req.body.client_id ||
       !req.body.client_phone_number ||
       !req.body.department_id ||
-      !req.body.description ||
-      !req.body.id || 
+      !req.body.description || 
       !req.body.location_id ||
       !req.body.priority_id ||
       !req.body.service_details_id ||
       !req.body.service_id ||
       !req.body.status_id ||
-      !req.body.subject
+      !req.body.subject ||
+      !req.body.email
     ) {
      return res.json({
         error: true,

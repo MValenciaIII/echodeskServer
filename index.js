@@ -23,64 +23,63 @@ app.use(cors());
  // next();
 //});
 
-// Database connection
-//const db = mysql.createConnection({
-  //  host: "34.226.17.246",
-    //user: "root",
-   // password: "memadev",
-   // database: "echodeskDev"
-//})
-//db.connect(function (err) {
-   // if (err) {
-   //    return console.error('error: ' + err.message);
-  // }
-  // console.log('Connected to the MySQL server.');
-//})
-//! Use of Multer
-//var storage = multer.diskStorage({
-    //destination: (req, file, callBack) => {
-     //   callBack(null, './public/Images')     // './public/images/' directory name where save the file
-   // },
-   // filename: (req, file, callBack) => {
-    //    callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
-  //  }
-//})
-//var upload = multer({
-  //  storage: storage
-//});
+ Database connection
+const db = mysql.createConnection({
+    host: "34.226.17.246",
+    user: "root",
+    password: "memadev",
+    database: "echodeskDev"
+})
+db.connect(function (err) {
+    if (err) {
+   return console.error('error: ' + err.message);
+   }
+   console.log('Connected to the MySQL server.');
+})
+// Use of Multer
+var storage = multer.diskStorage({
+    destination: (req, file, callBack) => {
+    callBack(null, './public/Images')     // './public/images/' directory name where save the file
+    },
+   filename: (req, file, callBack) => {
+       callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+   }})
+var upload = multer({
+    storage: storage
+});
 //! Routes start
 
 //@type   GET
 //$route  /
 //@desc   route for Home page
 //@access PUBLIC
-//router.get("/create", (req, res) => {
-    // res.render('./index.html');
-  //  res.sendFile(__dirname + "/index.html");
-//})
+router.get("/create", (req, res) => {
+    res.render('./index.html');
+   res.sendFile(__dirname + "/index.html");
+})
 
 //@type   POST
 //$route  /post
 //@desc   route for post data
 //@access PUBLIC
-//router.post("/post", upload.single('fileUpload'), (req, res) => {
-   // if (!req.file) {
-     //   console.log("No file upload");
-   // } else {
-       // console.log(req.file.filename)
-       // var imgsrc = 'http://localhost:4000/' + req.file.filename
-       // var insertData = "INSERT INTO files(file_name)VALUES(?)"
-        //db.query(insertData, [imgsrc], (err, result) => {
-      //      if (err) throw err
-      //      console.log("file uploaded")
-    //    })
-  //  }
-//}); 
+router.post("/post", upload.single('fileUpload'), (req, res) => {
+    if (!req.file) {
+      console.log("No file upload");
+   } else {
+        console.log(req.file.filename)
+        var imgsrc = 'http://localhost:4000/' + req.file.filename
+        var insertData = "INSERT INTO files(file_name)VALUES(?)"
+        db.query(insertData, [imgsrc], (err, result) => {
+            if (err) throw err
+            console.log("file uploaded")
+        })
+    }
+}); 
 
-//const PORT = 4000; //? Any connection to the react port of 3000 for local hos
-//app.listen(PORT, () => {
-  //console.log(`Server on PORT: ${PORT}`);
-//});
+const PORT = 4000; //? Any connection to the react port of 3000 for local hos
+app.listen(PORT, () => {
+  console.log(`Server on PORT: ${PORT}`);
+});
 
 //const PORT = 80;
 // app.listen(PORT, () => {

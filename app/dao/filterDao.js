@@ -22,11 +22,12 @@ class FilterDao {
       let values=Object.values(rest);
       console.log({values})
       //*Conditional is not working ? 
-      let joined = `${fields.join('=? AND ')}=?`
+      let joined = fields.join('=? AND ');  //if only 1 field, no=? to join with;  if mutliples, appends;
       if (created_at) {
          created_at = created_at.replace('+', ' ');
          createdAtSql = `created_at >= DATE_SUB(NOW(), INTERVAL ${created_at})`;
-        if (fields) {
+        //  joined = fields.join('=? AND ')
+        if (fields.length > 0) {
           joined = ' AND '.concat(`${fields.join('=? AND ')}=?`)
         }
       }

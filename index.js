@@ -23,7 +23,7 @@ app.use(cors());
  // next();
 //});
 
- Database connection
+ //Database connection
 const db = mysql.createConnection({
     host: "34.226.17.246",
     user: "root",
@@ -80,19 +80,6 @@ const PORT = 4000; //? Any connection to the react port of 3000 for local hos
 app.listen(PORT, () => {
   console.log(`Server on PORT: ${PORT}`);
 });
-
-//const PORT = 80;
-// app.listen(PORT, () => {
-  // console.log(`Server on PORT: ${PORT}`);//
-//});
-
-
-const port = 4000;
-app.listen(port, () => {
-console.log(`Example app listening at http://localhost:${port}`);
-});
-
-
 
 //ALL ROUTES
 

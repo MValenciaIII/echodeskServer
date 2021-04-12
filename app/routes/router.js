@@ -11,6 +11,8 @@ router.use('/notes', require('./api/noteRoutes'));
 
 router.use('/tickets/filter', require('./api/filterRoutes'));
 
+router.use('/tickets/quickFilters', require('./api/quickFilterRoutes'));
+
 router.use('/status', require('./api/statusRoutes'));
 
 router.use('/files', require('./api/fileRoutes'));

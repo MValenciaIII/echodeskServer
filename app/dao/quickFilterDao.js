@@ -6,36 +6,38 @@ class FilterDao {
     this.pool = pool;
   }
 
- async quickFilters(req, res) {
-   console.log(req.query)
-    try {
-      let sql = 'Select * from tickets WHERE '
-        if(req.query.urgent){
-          sql += `tickets.priority_id = 4 AND `
-        }
-       else if (req.query.hideClosed){
-            sql += `tickets.status_id != 3 AND tickets.status_id != 4 AND `
-        }
-        else if (req.query.assignedToMe){
-          sql += `tickets.agent_id = ${req.query.assignedToMe} AND `
-      }
-        sql += ` tickets.created_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH)`
-        console.log({sql});
-      let tickets = await pool.query(sql);
-      let files = await pool.query('Select * from files');
-      let comments = await pool.query(`Select tn.id, tn.note_text, tn.client_id, tn.ticket_id, c.fname, c.lname, tn.created_at
-      from ticket_notes tn
-      join clients c ON tn.client_id = c.id `);
-      let merged = tickets.map((ticket, idx) => {
-        ticket.files = files.filter(file => file.ticket_id === ticket.id);
-        ticket.notes = comments.filter(comment => comment.ticket_id === ticket.id)
-        return ticket
-      })
-      res.json(merged);
-  } catch (err) {
-    throw new Error(err)
-  } 
-}
+  async quickFilters(req, res) {
+    console.log(req.query)
+     try {
+       let sql = 'Select * from tickets WHERE '
+       if(req.query.urgent){
+         sql += `tickets.priority_id = 1 AND `
+         console.log('urgent');
+       }
+      if (req.query.hideClosed){
+           sql += `tickets.status_id != 3 AND tickets.status_id != 4 AND `
+           console.log('closed');
+       }
+       if (req.query.assignedToMe){
+         sql += `tickets.agent_id = ${req.query.assignedToMe} AND `
+     }
+         sql += ` tickets.created_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH)`
+         console.log({sql});
+       let tickets = await pool.query(sql);
+       let files = await pool.query('Select * from files');
+       let comments = await pool.query(`Select tn.id, tn.note_text, tn.client_id, tn.ticket_id, c.fname, c.lname, tn.created_at
+       from ticket_notes tn
+       join clients c ON tn.client_id = c.id `);
+       let merged = tickets.map((ticket, idx) => {
+         ticket.files = files.filter(file => file.ticket_id === ticket.id);
+         ticket.notes = comments.filter(comment => comment.ticket_id === ticket.id)
+         return ticket
+       })
+       res.json(merged);
+   } catch (err) {
+     throw new Error(err)
+   } 
+ }
 
 
 updateById(req, res) {

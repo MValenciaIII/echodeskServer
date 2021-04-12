@@ -11,7 +11,7 @@ class FilterDao {
      try {
        let sql = 'Select * from tickets WHERE '
        if(req.query.urgent){
-         sql += `tickets.priority_id = 1 AND `
+         sql += `tickets.priority_id = 4 AND `
          console.log('urgent');
        }
       if (req.query.hideClosed){

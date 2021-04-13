@@ -59,10 +59,9 @@ router.post("/post", upload.single('file'), (req, res) => {
    } else {
         console.log(req.file.filename)
         var imgsrc = 'https://mema4kids.info/' + req.file.filename
-        var insertData = "INSERT INTO files(file_name, ticket_id)VALUES(?, ?)"
-        db.query(insertData, [imgsrc, req.body.ticket_id], (err, result) => {
+        var insertData = "INSERT INTO files(file_name, ticket_id)VALUES('?, ?')"
+        db.query(insertData, [imgsrc], (err, result) => {
             if (err) throw err
-           res.send('File successfully uploaded.')
            console.log("file uploaded")
         })
     }

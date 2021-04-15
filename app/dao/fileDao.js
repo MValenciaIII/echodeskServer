@@ -37,7 +37,7 @@ class FileDao {
     if (!req.file) {
       console.log('No file upload');
     } else {
-      var imgsrc = 'http://localhost:4000/' + req.file.filename;
+      var imgsrc = 'https://mema4kids.info/' + req.file.filename;
       console.log({imgsrc})
       console.log(req.body);
       console.log(req.body.ticket_id);

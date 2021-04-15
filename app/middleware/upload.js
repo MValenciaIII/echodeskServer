@@ -20,6 +20,7 @@ var storage = multer.diskStorage({
 });
 var upload = multer({
   storage: storage,
+  limits: { fileSize: 1024 * 3 * 1000 }
 })
 
 module.exports = upload;

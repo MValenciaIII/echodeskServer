@@ -15,15 +15,6 @@ app.listen(PORT, () => {
 //ALL ROUTES
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/404.html'))
-  // res.json({
-  //   // 'All tickets': 'http://localhost:4000/api/tickets',
-  //   // 'Find by priority': 'http://localhost:4000/api/priority',
-  //   // 'Find by status': 'http://localhost:4000/api/status',
-  //   // 'Find by departments': 'http://localhost:4000/api/departments',
-  //   // 'Find by details': 'http://localhost:4000/api/details',
-  //   // 'Find by service': 'http://localhost:4000/api/service',
-  //   // 'Find by location': 'http://localhost:4000/api/location',
-  // });
 });
 
 app.use('/api', router); //this entire system only exist after /api. system becomes pre-fixed.

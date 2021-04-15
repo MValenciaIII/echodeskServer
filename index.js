@@ -14,7 +14,7 @@ app.listen(PORT, () => {
 
 //ALL ROUTES
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/404.html'))
+  res.sendFile(path.join(__dirname + '/index.html'))
 });
 
 app.use('/api', router); //this entire system only exist after /api. system becomes pre-fixed.

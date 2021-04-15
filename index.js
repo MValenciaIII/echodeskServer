@@ -1,22 +1,22 @@
+<<<<<<< HEAD
 const express = require('express')
 const app = express()
 const bodyparser = require('body-parser')
 const mysql = require('mysql')
 const multer = require('multer')
 const path = require('path')
+=======
+const express = require('express');
+const app = express();
+>>>>>>> 0fadd69583d010dfa6c0cf9c4ab798dc6bb57a88
 const cors = require('cors'); //gives us access to cors. Cors handles the http for us.
-const bodyParser = require('body-parser'); // allows us to parse
 const router = require('./app/routes/router');
-//use express static folder
-var publicDir = require('path').join(__dirname,'./public/Images'); 
-app.use(express.static(publicDir)); 
-app.use(bodyparser.json())
-app.use(bodyparser.urlencoded({
-    extended: true
-}))
-
+const path = require('path');
+app.use(express.json());
+app.use(express.urlencoded({ extended: true,}));
 app.use(cors());
 
+<<<<<<< HEAD
 app.use(function(req,res, next){
  // res.setHeader("Access-Control-Allow-Origin", "*")
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -69,29 +69,36 @@ router.post("/post", upload.single('file'), (req, res) => {
 }); 
 
 const PORT = 4000; //? Any connection to the react port of 3000 for local hos
+=======
+const PORT = 4000; // Any connection to the react port of 4000 for local host
+>>>>>>> 0fadd69583d010dfa6c0cf9c4ab798dc6bb57a88
 app.listen(PORT, () => {
   console.log(`Server on PORT: ${PORT}`);
 });
 
+<<<<<<< HEAD
 //const PORT = 80;
 // app.listen(PORT, () => {
   // console.log(`Server on PORT: ${PORT}`);//
 //});
 
 
+=======
+>>>>>>> 0fadd69583d010dfa6c0cf9c4ab798dc6bb57a88
 //ALL ROUTES
-
 app.get('/', (req, res) => {
-res.json({ 
- 'All tickets': 'https://mema4kids.info/api/tickets', 
- 'Find by priority': 'https://mema4kids.info/api/priority',
- 'Find by status': 'https://mema4kids.info/api/status',
- 'Find by departments': 'https://mema4kids.info/api/departments',
- 'Find by details': 'https://mema4kids.info/api/details',
- 'Find by service': 'https://mema4kids.info/api/service',
- 'Find by location': 'https://mema4kids.info/api/location',
-})
+  res.sendFile(path.join(__dirname + '/404.html'))
+  // res.json({
+  //   // 'All tickets': 'http://localhost:4000/api/tickets',
+  //   // 'Find by priority': 'http://localhost:4000/api/priority',
+  //   // 'Find by status': 'http://localhost:4000/api/status',
+  //   // 'Find by departments': 'http://localhost:4000/api/departments',
+  //   // 'Find by details': 'http://localhost:4000/api/details',
+  //   // 'Find by service': 'http://localhost:4000/api/service',
+  //   // 'Find by location': 'http://localhost:4000/api/location',
+  // });
 });
 
+app.use('/api', router); //this entire system only exist after /api. system becomes pre-fixed.
 
-app.use('/api', router); //this entire system only exist after /api. pre-fixed with
+

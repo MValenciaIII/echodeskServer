@@ -33,25 +33,33 @@ class FileDao {
   }
 
   uploadFiles(req, res){
-    // debugger;
-    if (!req.file) {
-      console.log('No file upload');
+    console.log('posting files from index.js');
+    if (!req.files) {
+      console.log('No files upload');
     } else {
-      var imgsrc = 'http://localhost:4000/' + req.file.filename;
-      console.log({imgsrc})
-      console.log(req.body);
-      console.log(req.body.ticket_id);
-      var insertData = `INSERT INTO files SET file_name = ?, ticket_id = ?`;
-      this.pool.query(insertData, [imgsrc, req.body.ticket_id], (err, result) => {
-        if (err) throw err;
-        console.log('file uploaded');
-        res.send({
-          "code": 200,
-          "success": "file uploaded successfully."
-      })
+      // console.log(req.file.filename);
+      // console.log(req.file.ticket_id)
+      let results = {
+        fields: [],
+        message: 'All good!',
+      };
+      req.files.forEach((file) => {
+        var imgsrc = 'http://mema4kids.info/' + file.filename;
+        // console.log({ imgsrc });
+        // req.file.ticket_id = 19;
+        // console.log(req.body);
+        // console.log(req.body.ticket_id);
+        var insertData = `INSERT INTO files SET file_name = ?, ticket_id = ?`;
+        db.query(insertData, [imgsrc, req.body.ticket_id], (err, result) => {
+          if (err) {
+            throw err;
+          } else {
+            results.fields.push(result);
+          }
+        });
       });
+      return res.json(results);
     }
-    console.log(req.body)
   }
 
 

@@ -55,7 +55,7 @@ class FileDao {
         // console.log(req.body);
         // console.log(req.body.ticket_id);
         var insertData = `INSERT INTO files SET file_name = ?, ticket_id = ?`;
-        db.query(insertData, [imgsrc, req.body.ticket_id], (err, result) => {
+        pool.query(insertData, [imgsrc, req.body.ticket_id], (err, result) => {
           if (err) {
             throw err;
           } else {

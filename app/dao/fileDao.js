@@ -36,12 +36,17 @@ class FileDao {
     console.log('posting files from index.js');
     if (!req.files) {
       console.log('No files upload');
+    } else if (req.files.length > 3) {
+      res.status(400).json({
+        error: true,
+        message: "Can't upload more than 3 files",
+      })
     } else {
       // console.log(req.file.filename);
       // console.log(req.file.ticket_id)
       let results = {
         fields: [],
-        message: 'All good!',
+        message: 'Files uploaded successfully',
       };
       req.files.forEach((file) => {
         var imgsrc = 'http://mema4kids.info/' + file.filename;

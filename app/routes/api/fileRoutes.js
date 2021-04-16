@@ -13,6 +13,12 @@ router.get('/', (req, res) => {
 
 //api/files/post
 router.post('/post', upload.array('files', 3),  (req, res) => {
+  if (req.files.length > 3) {
+   return res.json({
+      error: true,
+      message: 'Cannot send more than 3 files'
+    })
+  }
  dao.uploadFiles(req, res);
 });
 

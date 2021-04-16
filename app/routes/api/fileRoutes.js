@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
 
 //api/files/post
-router.post('/post', upload.single('file'),  (req, res) => {
+router.post('/post', upload.array('files', 3),  (req, res) => {
  dao.uploadFiles(req, res);
 });
 

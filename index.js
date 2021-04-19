@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors'); //gives us access to cors. Cors handles the http for us.
 const router = require('./app/routes/router');
 const publicDir = require('./multerConfig');
+const path = require('path');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true,}));
 app.use(cors());

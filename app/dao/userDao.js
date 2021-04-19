@@ -1,10 +1,8 @@
 const pool = require('../config/dbconfig');
-
 class UserDao {
   constructor() {
     this.pool = pool;
   }
-
 
   findAll(req, res) {
     let sql = `SELECT * from clients ORDER BY id; `
@@ -19,8 +17,6 @@ class UserDao {
     });
   }
 
-
-
   findbyID(req, res, id) {
     let sql = `SELECT * from clients where id=?`;
     this.pool.query(sql, [id], function (err, rows) {
@@ -33,7 +29,6 @@ class UserDao {
       res.json(rows[0]);
     });
   }
-
   
   create(req, res) {
     let fields = Object.keys(req.body);

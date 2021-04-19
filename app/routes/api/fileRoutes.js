@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
   dao.findAll(req, res);
 });
 
-
 //api/files/post
 router.post('/post', upload.array('files', 3),  (req, res) => {
   if (req.files.length > 3) {
@@ -26,13 +25,6 @@ router.post('/post', upload.array('files', 3),  (req, res) => {
 router.get('/:id', (req, res) => {
   dao.findbyID(req, res, req.params.id);
 });
-
-
-// //CREATE FILE ROUTE
-// router.post('/create', (req, res) => {
-//   console.log(req.body);
-//   dao.create(req, res);
-// });
 
 
 // //UPDATE FILE ROUTE.

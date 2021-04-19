@@ -1,5 +1,4 @@
 const pool = require('../config/dbconfig');
-
 class PriorityDao {
   //sometimes you have a parent dao class so its best to give the classes more define names.
   constructor() {

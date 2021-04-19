@@ -10,7 +10,7 @@ class DepartmentDao {
     this.pool.query(sql, function (err, rows) {
       if (err) {
         res.json({
-          //error and message suppose to look like: "error", "message". It works withou
+          //error and message suppose to look like: "error", "message".
           error: true,
           message: err,
         });

@@ -7,11 +7,6 @@ class FilterDao {
   }
 
  async filterTickets(req, res) {
-  // if (true) console.log(true)​​​​​​​​​​​​​​​​;
-  // console.log('FILTERING LOGS BELOW');
-  // let {created_at, ...rest} = req.query;
-  // let createdAtSql='';
-
     try {
       let {created_at, ...rest} = req.query;
       let createdAtSql='';
@@ -21,7 +16,6 @@ class FilterDao {
       console.log({fields})
       let values=Object.values(rest);
       console.log({values})
-      //*Conditional is not working ? 
       let joined = fields.join('=? AND ');  //if only 1 field, no=? to join with;  if mutliples, appends;
       if (created_at) {
          created_at = created_at.replace('+', ' ');

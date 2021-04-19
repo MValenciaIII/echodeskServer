@@ -7,7 +7,6 @@ class NoteDao {
     this.pool = pool;
   }
   findAll(req, res) {
-    // let sql = "SELECT * FROM movies where deleted_at is NULL"; // simple statement unless you have a lot of joins.
     let sql = 'SELECT * FROM ticket_notes';
     // let sql = `SELECT c.id, c.fname, c.lname, c.email, c.mobile_phone, c.office_phone, c.title, d.department, l.location
     // from clients c

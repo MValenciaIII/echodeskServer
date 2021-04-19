@@ -1,11 +1,7 @@
-// const express = require('express');
-// const app = express();
 const publicDir = require('../../multerConfig')
 const multer = require('multer');
 const path = require('path');
 // debugger
-
-
 // Use of Multer
 var storage = multer.diskStorage({
   destination: (req, file, callBack) => {

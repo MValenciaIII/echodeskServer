@@ -1,12 +1,10 @@
 const pool = require('../config/dbconfig');
-
 class FileDao {
   //sometimes you have a parent dao class so its best to give the classes more define names.
   constructor() {
     this.pool = pool;
   }
   findAll(req, res) {
-    // let sql = "SELECT * FROM movies where deleted_at is NULL"; // simple statement unless you have a lot of joins.
     let sql = 'SELECT * FROM files';
     this.pool.query(sql, function (err, rows) {
       if (err) {
@@ -42,18 +40,12 @@ class FileDao {
         message: "Can't upload more than 3 files",
       })
     } else {
-      // console.log(req.file.filename);
-      // console.log(req.file.ticket_id)
       let results = {
         fields: [],
         message: 'Files uploaded successfully',
       };
       req.files.forEach((file) => {
         var imgsrc = 'http://mema4kids.info/' + file.filename;
-        // console.log({ imgsrc });
-        // req.file.ticket_id = 19;
-        // console.log(req.body);
-        // console.log(req.body.ticket_id);
         var insertData = `INSERT INTO files SET file_name = ?, ticket_id = ?`;
         pool.query(insertData, [imgsrc, req.body.ticket_id], (err, result) => {
           if (err) {

@@ -17,7 +17,7 @@ app.listen(PORT, () => {
 
 //ALL ROUTES
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/404.html'))
+  res.sendFile(path.join(__dirname + '/index.html'))
   // res.json({
   //   'All tickets': 'http://localhost:4000/api/tickets',
   //   'Find by priority': 'http://localhost:4000/api/priority',

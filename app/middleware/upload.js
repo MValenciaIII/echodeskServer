@@ -17,14 +17,14 @@ var storage = multer.diskStorage({
 var upload = multer({
   storage: storage,
   limits: { fileSize: 1024 * 3 * 1000 },
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" || file.mimetype == "image/gif" || file.mimetype == "image/png") {
-      cb(null, true);
-    } else {
-      cb(null, false);
-      return cb(new Error('Only .png, .jpg, .gif, and .jpeg format allowed!'));
-    }
-  }
+  // fileFilter: (req, file, cb) => {
+  //   if (file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" || file.mimetype == "image/gif" || file.mimetype == "image/png") {
+  //     cb(null, true);
+  //   } else {
+  //     cb(null, false);
+  //     return cb(new Error('Only .png, .jpg, .gif, and .jpeg format allowed!'));
+  //   }
+  // }
 })
 
 module.exports = upload;

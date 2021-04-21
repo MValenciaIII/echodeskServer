@@ -44,7 +44,10 @@ class FileDao {
     // }
     const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'];
     let filesArr = [...req.files];
-        if ( !filesArr.every((file) => SUPPORTED_FORMATS.includes(file.type))){
+    console.log(filesArr)
+    let isValid = filesArr.every((file) => SUPPORTED_FORMATS.includes(file.mimetype))
+    console.log('IsValid', isValid)
+        if (!isValid) {
          return res.status(400).send({
             error: true,
             message: "Unsupported File Type.",

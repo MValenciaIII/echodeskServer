@@ -5,6 +5,7 @@ class TicketDao {
   constructor() {
     this.pool = pool;
   }
+
   async findAll(req, res) {
     try {
       let tickets = await pool.query('SELECT * FROM tickets');
@@ -23,6 +24,7 @@ class TicketDao {
     throw new Error(err)
   } 
 }
+
   async findbyID(req, res, client_id) {
     try {
       let tickets = await pool.query('SELECT * FROM tickets where client_id=?', [client_id]);
@@ -108,7 +110,7 @@ class TicketDao {
     //have to put =? at the end of the join because join only add between things!
     console.log(sql);
     this.pool.query(sql, [...values, req.params.id], (err, rows) => {
-      //... means SPREAD. It takes values from of array (in this instance).
+      //... means SPREAD. It takes values from an array (in this instance).
       //did this method because, cant send id in body of values. if we didnt use params, then id would have to be passed in last. sent id as a "url param" and that seperated id for the body content.
       if (err) {
         res.json({

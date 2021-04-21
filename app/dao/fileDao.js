@@ -32,16 +32,24 @@ class FileDao {
 
   uploadFiles(req, res){
     console.log('posting files from index.js');
-    if(file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" || file.mimetype == "image/gif" || file.mimetype == "image/png"){
-      file.mv('./public/Images/' + file.file_name, function(err){
-        if(err){
-          res.json({
-            error:true,
-            message: err,
-          });
+    // if(file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" || file.mimetype == "image/gif" || file.mimetype == "image/png"){
+    //   file.mv('./public/Images/' + file.file_name, function(err){
+    //     if(err){
+    //       res.json({
+    //         error:true,
+    //         message: err,
+    //       });
+    //     }
+    //   })
+    // }
+    const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'];
+    let filesArr = [...req.files];
+        if ( !filesArr.every((file) => SUPPORTED_FORMATS.includes(file.type))){
+          res.status(400).send({
+            error: true,
+            message: "Unsupported File Type.",
+          })
         }
-      })
-    }
     if (!req.files) {
       console.log('No files upload');
     } else if (req.files.length > 3) {

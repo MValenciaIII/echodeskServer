@@ -93,7 +93,6 @@ class UserDao {
     this.pool.query(sql, [...values, req.params.id], (err, rows) => {
         //... means SPREAD. It takes values from of array (in this instance).
         //did this method because, cant send id in body of values. if we didnt use params, then id would have to be passed in last. sent id as a "url param" and that seperated id for the body content.
-  
         if (err) {
             res.json({
                 error: true,

@@ -1,3 +1,4 @@
+//Requiring the module
 //Express is a framework that works with node.js to web applications. 
 const express = require('express'); //declares a variable that will contain the module express, that is in the node_module folder. 
 const app = express();
@@ -11,13 +12,13 @@ app.use(cors());
 app.use(express.static(publicDir));
 // debugger;
 
-
+//Server setup
 const PORT = 4000; // Any connection to the react port of 4000 for localhost. 
 app.listen(PORT, () => {
   console.log(`Server on PORT: ${PORT}`);
 });
 
-//ALL ROUTES
+//ALL ROUTES - Route handling 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html')) //tranfers a file at the given path.
 });

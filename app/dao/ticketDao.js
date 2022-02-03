@@ -62,7 +62,8 @@ class TicketDao {
       !req.body.service_id ||
       !req.body.status_id ||
       !req.body.subject ||
-      !req.body.email
+      !req.body.email ||
+      !req.body.bureauapprover_id
     ) {
      return res.json({
         error: true,
@@ -120,6 +121,15 @@ class TicketDao {
       }
       res.json(rows);
     });
+  }
+
+  async findByMysqlID(req,res) {
+    try{
+      let tickets = await  pool.query('SELECT id from tickets WHERE id=?');
+    } catch (err) {
+      throw new Error(err)
+    } 
+
   }
  }
 module.exports = TicketDao;

@@ -148,4 +148,9 @@ router.get('/delete/:id', (req, res) => {
   dao.deletebyID(req, res, req.params.id);
 });
   
+router.get('/:id', (req,res) => {
+  console.log(req.body);
+
+  dao.findByMysqlID(req, res);
+})
 module.exports = router;
